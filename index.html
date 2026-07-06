@@ -65,10 +65,16 @@ th.sorted .si2{opacity:1}
 .fn{padding:0 24px 18px;font-size:11px;color:var(--muted);line-height:1.5}
 /* Tab 3 */
 .wg-cat{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;color:#fff;white-space:nowrap}
-.wg-member{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--border);font-size:12px}
+.wg-member{display:flex;align-items:center;gap:8px;padding:4px 6px;border-bottom:1px solid var(--border);font-size:12px;border-radius:4px}
 .wg-member:last-child{border-bottom:none}
-.wg-mname{flex:1}
-.wg-mnum{color:var(--muted);font-size:11px}
+.wg-member.ext{background:rgba(212,88,10,.07);border-left:3px solid #D4580A;padding-left:8px}
+:root[data-theme="dark"] .wg-member.ext{background:rgba(212,88,10,.13)}
+.wg-mname{flex:1;font-weight:500}
+.wg-member.ext .wg-mname{color:#B84500}
+:root[data-theme="dark"] .wg-member.ext .wg-mname{color:#F07040}
+.wg-mnum{font-size:11px;font-weight:600;color:#B84500;letter-spacing:.3px;background:rgba(212,88,10,.1);padding:1px 7px;border-radius:8px;white-space:nowrap}
+:root[data-theme="dark"] .wg-mnum{color:#F07040;background:rgba(212,88,10,.2)}
+.wg-ext-badge{display:inline-block;background:#D4580A;color:#fff;border-radius:8px;padding:1px 6px;font-size:9px;font-weight:700;white-space:nowrap}
 .wg-admin{display:inline-block;background:rgba(0,178,169,.15);color:var(--teal-d);border:1px solid rgba(0,178,169,.3);border-radius:8px;padding:1px 6px;font-size:9px;font-weight:600}
 </style>
 </head>
@@ -343,9 +349,9 @@ function r3(d){
     if(op){
       const its=g.integrantes.map(m=>{
         const ext=m.numero&&m.numero.startsWith("+");
-        return`<div class="wg-member">
-          <span class="wg-mname">${ext?'◆ ':''}${m.nome}</span>
-          ${ext?`<span class="wg-mnum">${m.numero}</span>`:''}
+        return`<div class="wg-member${ext?' ext':''}">
+          <span class="wg-mname">${m.nome}</span>
+          ${ext?`<span class="wg-mnum">${m.numero}</span><span class="wg-ext-badge">externo</span>`:''}
           ${m.funcao==='admin'?'<span class="wg-admin">admin</span>':''}
         </div>`;
       }).join("");
