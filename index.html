@@ -1,459 +1,617 @@
-<title>Aderência Grupos WPP — Seazone</title>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aderência WPP — Seazone PMO</title>
 <style>
 :root {
-  --navy:    #0D2240;
-  --teal:    #00B2A9;
-  --teal-d:  #007A73;
-  --bg:      #F7F9FC;
-  --surface: #FFFFFF;
-  --border:  #DDE5F0;
-  --ink:     #0D2240;
-  --ink-2:   #4A607E;
-  --ink-3:   #8EA4BE;
-  --row-alt: #F2F6FB;
-  --c-high:  #16A34A;
-  --c-high-bg: #DCFCE7;
-  --c-mid:   #0093A0;
-  --c-mid-bg: #D9F5F4;
-  --c-low:   #B45309;
-  --c-low-bg: #FEF3C7;
-  --c-zero:  #B91C1C;
-  --c-zero-bg: #FEE2E2;
+  --navy:#0D2240;--teal:#00B2A9;--teal-d:#007A73;--surf:#F7F9FC;
+  --card:#ffffff;--border:#DDE3EF;--txt:#1C2B40;--muted:#6B7A90;
+  --row-hover:#F0FAF9;--radius:8px;
+  --t-so:#00B2A9;--t-cf:#0D2240;--t-ju:#7B2D8B;--t-ob:#D4580A;
+  --t-ge:#1A5DAB;--t-en:#C07D00;--t-co:#1A7A4A;--t-ap:#2AACAC;
+  --t-gs:#5A3D8A;--t-re:#6B7A8A;--t-ou:#8A8A8A;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg:      #07111E;
-    --surface: #0C1C30;
-    --border:  rgba(0,178,169,.15);
-    --ink:     #DDE8F5;
-    --ink-2:   #7A9BBC;
-    --ink-3:   #3E5D7A;
-    --row-alt: #0A1828;
-    --c-high-bg: rgba(22,163,74,.15);
-    --c-mid-bg:  rgba(0,147,160,.15);
-    --c-low-bg:  rgba(180,83,9,.15);
-    --c-zero-bg: rgba(185,28,28,.15);
-  }
+@media(prefers-color-scheme:dark){
+  :root{--surf:#111C2B;--card:#182233;--border:#2A3A50;--txt:#D8E4F0;--muted:#8A9BB0;--row-hover:#1A2E44;}
 }
-:root[data-theme="light"] {
-  --bg:#F7F9FC; --surface:#FFFFFF; --border:#DDE5F0; --ink:#0D2240; --ink-2:#4A607E;
-  --ink-3:#8EA4BE; --row-alt:#F2F6FB;
-  --c-high-bg:#DCFCE7; --c-mid-bg:#D9F5F4; --c-low-bg:#FEF3C7; --c-zero-bg:#FEE2E2;
-}
-:root[data-theme="dark"] {
-  --bg:#07111E; --surface:#0C1C30; --border:rgba(0,178,169,.15); --ink:#DDE8F5;
-  --ink-2:#7A9BBC; --ink-3:#3E5D7A; --row-alt:#0A1828;
-  --c-high-bg:rgba(22,163,74,.15); --c-mid-bg:rgba(0,147,160,.15);
-  --c-low-bg:rgba(180,83,9,.15); --c-zero-bg:rgba(185,28,28,.15);
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 14px; -webkit-font-smoothing: antialiased; }
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  min-height: 100vh;
-}
-
-/* ── HEADER ─────────────────────────── */
-.top-bar {
-  background: var(--navy);
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.top-title {
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -.01em;
-}
-.top-sub {
-  color: rgba(255,255,255,.45);
-  font-size: 11px;
-  margin-top: 1px;
-}
-.top-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.meta-pill {
-  background: rgba(0,178,169,.18);
-  color: var(--teal);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .04em;
-  padding: 3px 9px;
-  border-radius: 20px;
-  white-space: nowrap;
-}
-
-/* ── TOOLBAR ────────────────────────── */
-.toolbar {
-  padding: 12px 20px 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.search-box {
-  flex: 1;
-  min-width: 180px;
-  max-width: 320px;
-  position: relative;
-}
-.search-box svg {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--ink-3);
-  pointer-events: none;
-}
-.search-input {
-  width: 100%;
-  padding: 7px 10px 7px 32px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--surface);
-  color: var(--ink);
-  font-size: 13px;
-  font-family: inherit;
-  outline: none;
-  transition: border-color .15s;
-}
-.search-input:focus { border-color: var(--teal); }
-.search-input::placeholder { color: var(--ink-3); }
-.count-label {
-  font-size: 12px;
-  color: var(--ink-3);
-  white-space: nowrap;
-  margin-left: auto;
-}
-.count-label strong { color: var(--ink-2); }
-
-/* ── TABLE WRAP ─────────────────────── */
-.table-wrap {
-  padding: 12px 20px 40px;
-  overflow-x: auto;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-  background: var(--surface);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgba(13,34,64,.06);
-}
-
-/* ── THEAD ──────────────────────────── */
-thead tr {
-  background: var(--navy);
-}
-thead th {
-  padding: 10px 14px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.55);
-  text-align: left;
-  user-select: none;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color .12s;
-}
-thead th:hover { color: rgba(255,255,255,.9); }
-thead th.active { color: var(--teal); }
-thead th.right { text-align: right; }
-.sort-icon { display: inline-block; margin-left: 3px; opacity: .45; font-style: normal; font-size: 9px; }
-thead th.active .sort-icon { opacity: 1; color: var(--teal); }
-
-/* ── TBODY ──────────────────────────── */
-tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
-tbody tr:last-child { border-bottom: none; }
-tbody tr:nth-child(even) { background: var(--row-alt); }
-tbody tr:hover { background: rgba(0,178,169,.07); }
-
-td {
-  padding: 9px 14px;
-  vertical-align: middle;
-}
-.td-rank {
-  color: var(--ink-3);
-  font-size: 11px;
-  font-variant-numeric: tabular-nums;
-  width: 32px;
-  text-align: right;
-  padding-right: 6px;
-}
-.td-name {
-  font-weight: 500;
-  color: var(--ink);
-  min-width: 180px;
-}
-.td-num {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-  font-size: 13px;
-  white-space: nowrap;
-  color: var(--ink);
-}
-.td-num.dim { color: var(--ink-2); }
-.td-pct { text-align: right; padding-right: 12px; }
-
-/* section divider row */
-tr.section-div td {
-  background: var(--row-alt);
-  padding: 6px 14px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  border-top: 2px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-/* ── PCT CHIP ───────────────────────── */
-.chip {
-  display: inline-block;
-  min-width: 48px;
-  text-align: center;
-  padding: 2px 8px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: .01em;
-}
-.chip-high  { background: var(--c-high-bg);  color: var(--c-high); }
-.chip-mid   { background: var(--c-mid-bg);   color: var(--c-mid); }
-.chip-low   { background: var(--c-low-bg);   color: var(--c-low); }
-.chip-zero  { background: var(--c-zero-bg);  color: var(--c-zero); }
-
-/* no-group badge */
-.no-group-badge {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .04em;
-  color: var(--c-zero);
-  background: var(--c-zero-bg);
-  padding: 2px 7px;
-  border-radius: 4px;
-}
-
-/* ── FOOTER ─────────────────────────── */
-.footer-note {
-  padding: 0 20px 24px;
-  font-size: 11px;
-  color: var(--ink-3);
-  line-height: 1.6;
-}
-
-@media (max-width: 520px) {
-  .td-name { min-width: 140px; font-size: 12px; }
-  .top-bar  { padding: 10px 14px; }
-  .table-wrap { padding: 10px 10px 32px; }
-  .toolbar { padding: 10px 10px 0; }
-  .footer-note { padding: 0 10px 20px; }
-}
+:root[data-theme="light"]{--surf:#F7F9FC;--card:#ffffff;--border:#DDE3EF;--txt:#1C2B40;--muted:#6B7A90;--row-hover:#F0FAF9;}
+:root[data-theme="dark"]{--surf:#111C2B;--card:#182233;--border:#2A3A50;--txt:#D8E4F0;--muted:#8A9BB0;--row-hover:#1A2E44;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--surf);color:var(--txt);font-size:14px;min-height:100vh}
+/* ── Header ── */
+.hdr{background:var(--navy);padding:18px 24px;display:flex;align-items:center;gap:12px}
+.hdr-logo{width:36px;height:36px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;flex-shrink:0}
+.hdr-title{color:#fff;font-size:18px;font-weight:600;line-height:1.2}
+.hdr-sub{color:rgba(255,255,255,.55);font-size:12px;margin-top:2px}
+.hdr-right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn-theme{background:rgba(255,255,255,.1);border:none;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px}
+.btn-theme:hover{background:rgba(255,255,255,.2)}
+/* ── Tabs ── */
+.tabs-nav{background:var(--navy);padding:0 24px;display:flex;gap:4px;border-top:1px solid rgba(255,255,255,.08)}
+.tab-btn{background:none;border:none;color:rgba(255,255,255,.55);padding:12px 18px;cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;transition:.15s}
+.tab-btn:hover{color:rgba(255,255,255,.85)}
+.tab-btn.active{color:#fff;border-bottom-color:var(--teal)}
+/* ── Pills row ── */
+.pills{display:flex;flex-wrap:wrap;gap:8px;padding:16px 24px 0}
+.pill{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--muted)}
+.pill span{color:var(--teal);margin-right:4px}
+/* ── Search bar ── */
+.search-row{padding:12px 24px;display:flex;gap:8px;align-items:center}
+.search-input{flex:1;max-width:380px;padding:8px 14px 8px 36px;border:1px solid var(--border);border-radius:6px;background:var(--card);color:var(--txt);font-size:13px;outline:none;position:relative}
+.search-wrap{position:relative;flex:1;max-width:380px}
+.search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted)}
+.search-input:focus{border-color:var(--teal)}
+/* ── Table ── */
+.tbl-wrap{overflow-x:auto;padding:0 24px 32px}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th{background:var(--navy);color:rgba(255,255,255,.8);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;padding:10px 12px;text-align:left;cursor:pointer;white-space:nowrap;user-select:none}
+th:hover{background:#1a3a60}
+th.sorted{color:#fff}
+td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:hover td{background:var(--row-hover)}
+.num{font-variant-numeric:tabular-nums}
+.right{text-align:right}
+/* ── Chips ── */
+.chip{display:inline-block;padding:3px 9px;border-radius:12px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap}
+.chip-green{background:#1A7A4A}
+.chip-lime{background:#6CA329}
+.chip-yellow{background:#C07D00}
+.chip-orange{background:#D4580A}
+.chip-red{background:#C0392B}
+.chip-gray{background:#8A8A8A}
+.chip-none{background:#ddd;color:#555}
+/* ── Tab content ── */
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+/* ── Groups tab ── */
+.emp-row{cursor:pointer;transition:.1s}
+.emp-row:hover td{background:var(--row-hover)}
+.emp-name{font-weight:600;color:var(--txt)}
+.expand-icon{transition:.2s;display:inline-block;color:var(--muted);font-size:10px;margin-right:6px}
+.emp-row.open .expand-icon{transform:rotate(90deg)}
+.detail-row td{padding:0;border-bottom:1px solid var(--border)}
+.detail-inner{background:var(--surf);padding:10px 20px 12px 40px;border-top:1px solid var(--border)}
+.grupo-item{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border)}
+.grupo-item:last-child{border-bottom:none}
+.grupo-nome{flex:1;font-size:13px;color:var(--txt)}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;color:#fff;white-space:nowrap}
+.acc-badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:600;background:rgba(0,178,169,.15);color:var(--teal-d);white-space:nowrap;border:1px solid rgba(0,178,169,.3)}
+.acc-badge.acc11{background:rgba(212,88,10,.12);color:#D4580A;border-color:rgba(212,88,10,.3)}
+.acc-both{display:flex;gap:4px}
+/* counts breakdown */
+.type-mini{display:flex;flex-wrap:wrap;gap:4px}
+.tcount{display:inline-flex;align-items:center;gap:3px;font-size:10px;color:var(--muted)}
+.tcount-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+/* sort icons */
+.sort-icon{opacity:.4;font-size:10px;margin-left:4px}
+th.sorted .sort-icon{opacity:1}
+/* tab 1 specific */
+.no-grp{color:var(--muted);font-style:italic;font-size:12px}
+/* footer note */
+.fnote{padding:0 24px 20px;font-size:11px;color:var(--muted)}
 </style>
+</head>
+<body>
 
-<div class="top-bar">
+<div class="hdr">
+  <div class="hdr-logo">PMO</div>
   <div>
-    <div class="top-title">Aderência — Grupos Seazone Oficial</div>
-    <div class="top-sub">Integrantes WPP × Investidores Ativos · Pipefy BD Investidores</div>
+    <div class="hdr-title">Grupos WhatsApp — Seazone</div>
+    <div class="hdr-sub">TimelinesAI · +48 61360557 e +11 935035592 · Atualizado em 06/07/2026</div>
   </div>
-  <div class="top-meta">
-    <span class="meta-pill">38 grupos ativos</span>
-    <span class="meta-pill">4 sem grupo</span>
-    <span class="meta-pill" id="meta-avg">— aderência média</span>
+  <div class="hdr-right">
+    <button class="btn-theme" onclick="toggleTheme()">&#9680; Tema</button>
   </div>
 </div>
 
-<div class="toolbar">
-  <div class="search-box">
-    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    <input class="search-input" id="search" type="text" placeholder="Buscar empreendimento…" oninput="applyFilter()">
+<div class="tabs-nav">
+  <button class="tab-btn active" onclick="switchTab('aderencia',this)">Aderência WPP</button>
+  <button class="tab-btn" onclick="switchTab('grupos',this)">Grupos por Empreendimento</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     TAB 1: ADERÊNCIA
+     ══════════════════════════════════════════════════════ -->
+<div id="tab-aderencia" class="tab-pane active">
+
+<div class="pills" id="pills1"></div>
+
+<div class="search-row">
+  <div class="search-wrap">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input class="search-input" id="search1" placeholder="Buscar empreendimento…" oninput="filterTab1()">
   </div>
-  <div class="count-label" id="count-label">42 empreendimentos</div>
-
 </div>
 
-<div class="table-wrap">
-<table>
-  <thead>
-    <tr>
-      <th class="right" onclick="sortBy(0)">#<i class="sort-icon" id="si0">↕</i></th>
-      <th onclick="sortBy(1)">Empreendimento<i class="sort-icon" id="si1">↕</i></th>
-      <th class="right" onclick="sortBy(2)">Integrantes WPP<i class="sort-icon" id="si2">↕</i></th>
-      <th class="right" onclick="sortBy(3)">Investidores Pipefy<i class="sort-icon" id="si3">↕</i></th>
-      <th class="right" onclick="sortBy(4)">Aderência<i class="sort-icon" id="si4">↑</i></th>
-    </tr>
-  </thead>
-  <tbody id="tbody"></tbody>
-</table>
+<div class="tbl-wrap">
+  <table id="tbl1">
+    <thead>
+      <tr>
+        <th onclick="sortTab1(0)" id="th1-0"># <span class="sort-icon">↕</span></th>
+        <th onclick="sortTab1(1)" id="th1-1">Empreendimento <span class="sort-icon">↕</span></th>
+        <th onclick="sortTab1(2)" class="right sorted" id="th1-2">Grupo WPP <span class="sort-icon">↓</span></th>
+        <th onclick="sortTab1(3)" class="right" id="th1-3">Invest. Ativos <span class="sort-icon">↕</span></th>
+        <th onclick="sortTab1(4)" class="right" id="th1-4">Aderência <span class="sort-icon">↕</span></th>
+      </tr>
+    </thead>
+    <tbody id="tbody1"></tbody>
+  </table>
+</div>
+<p class="fnote">* Integrantes do grupo Seazone Oficial vs. investidores ativos no Pipefy (fase "Ativo", pipe 306360401). Empreendimentos sem grupo WPP aparecem com 0 integrantes.</p>
 </div>
 
-<div class="footer-note">
-  Fonte: WhatsApp Web (conta Bruna Zanella, 06/07/2026) · Pipefy Pipe 306360401 fase Ativo. Os integrantes WPP incluem administradores Seazone — a aderência real de investidores pode ser ligeiramente inferior ao percentual exibido.
+<!-- ══════════════════════════════════════════════════════
+     TAB 2: GRUPOS POR EMPREENDIMENTO
+     ══════════════════════════════════════════════════════ -->
+<div id="tab-grupos" class="tab-pane">
+
+<div class="pills" id="pills2"></div>
+
+<div class="search-row">
+  <div class="search-wrap">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input class="search-input" id="search2" placeholder="Buscar empreendimento ou grupo…" oninput="filterTab2()">
+  </div>
+</div>
+
+<div class="tbl-wrap">
+  <table id="tbl2">
+    <thead>
+      <tr>
+        <th onclick="sortTab2(0)" id="th2-0"># <span class="sort-icon">↕</span></th>
+        <th onclick="sortTab2(1)" id="th2-1">Empreendimento <span class="sort-icon">↕</span></th>
+        <th onclick="sortTab2(2)" class="right sorted" id="th2-2">Total grupos <span class="sort-icon">↓</span></th>
+        <th id="th2-3">Tipos</th>
+      </tr>
+    </thead>
+    <tbody id="tbody2"></tbody>
+  </table>
+</div>
+<p class="fnote">Clique em qualquer linha para ver os nomes dos grupos. Fontes: TimelinesAI API — contas +48 61360557 (Bruna/Seazone) e +11 935035592. Grupos deduplicados por nome entre as duas contas.</p>
 </div>
 
 <script>
+/* ── DATA ── */
 const ROWS = [
-  ["Barra Grande Spot",        33, 68],
-  ["Barra Spot",               40, 65],
-  ["Batel Spot",               44,111],
-  ["Bonito Spot",              17, 62],
-  ["Bonito Spot II",           16, 21],
-  ["Cachoeira Beach Spot",     62,168],
-  ["Cachoeira Spot",           34,103],
-  ["Campeche Spot",            32, 75],
-  ["Canas Beach Spot",         41,119],
-  ["Canasvieiras Spot",        44,105],
-  ["Caraguá Spot",             14, 29],
-  ["Foz Spot",                 78,165],
-  ["Ilha do Campeche II Spot", 23, 50],
-  ["Ilha do Campeche Spot",    53,106],
-  ["Imbassaí Spot",            34, 72],
-  ["Ingleses Spot",            33, 57],
-  ["Itacaré Spot",             39, 70],
-  ["Japaratinga Spot",         28, 80],
-  ["Jurerê Beach Spot",        21, 56],
-  ["Jurerê Spot II",           17, 59],
-  ["Jurerê Spot III",          29, 68],
-  ["Marista 144 Spot",         29,112],
-  ["Meireles Spot",            47,105],
-  ["Morro das Pedras Spot",    48, 84],
-  ["Natal Spot",               35, 80],
-  ["Novo Campeche Spot",       23, 61],
-  ["Novo Campeche Spot II",    19, 31],
-  ["Ponta das Canas Spot",     56,177],
-  ["Ponta das Canas Spot II",  92,209],
-  ["Rosa Norte Spot",          38, 53],
-  ["Rosa Sul Spot",            28, 51],
-  ["Salvador Spot",            43, 82],
-  ["Santinho Spot",            77,213],
-  ["Santo Antônio Spot",       53, 69],
-  ["Sul da Ilha Spot",         66,110],
-  ["Urubici Spot",             32, 66],
-  ["Urubici Spot II",          44,102],
-  ["Trancoso Spot",            15, 53],
-  // sem grupo
-  ["Lagoa Spot",                0, 25],
-  ["Vistas de Anitá II",        0, 23],
-  ["Vistas de Anitá I",         0,  6],
-  ["Vistas de Anitá III",       0,  5],
+  ["Barra Grande Spot",33,68],["Barra Spot",40,65],["Batel Spot",44,111],
+  ["Bonito Spot",17,62],["Bonito Spot II",16,21],
+  ["Cachoeira Beach Spot",62,168],["Cachoeira Spot",34,103],
+  ["Campeche Spot",32,75],["Canas Beach Spot",41,119],
+  ["Canasvieiras Spot",44,105],["Caraguá Spot",14,29],
+  ["Foz Spot",78,165],["Ilha do Campeche II Spot",23,50],
+  ["Ilha do Campeche Spot",53,106],["Imbassaí Spot",34,72],
+  ["Ingleses Spot",33,57],["Itacaré Spot",39,70],
+  ["Japaratinga Spot",28,80],["Jurerê Beach Spot",21,56],
+  ["Jurerê Spot II",17,59],["Jurerê Spot III",29,68],
+  ["Marista 144 Spot",29,112],["Meireles Spot",47,105],
+  ["Morro das Pedras Spot",48,84],["Natal Spot",35,80],
+  ["Novo Campeche Spot",23,61],["Novo Campeche Spot II",19,31],
+  ["Ponta das Canas Spot",56,177],["Ponta das Canas Spot II",92,209],
+  ["Rosa Norte Spot",38,53],["Rosa Sul Spot",28,51],
+  ["Salvador Spot",43,82],["Santinho Spot",77,213],
+  ["Santo Antônio Spot",53,69],["Sul da Ilha Spot",66,110],
+  ["Trancoso Spot",15,53],["Urubici Spot",32,66],
+  ["Urubici Spot II",44,102],
+  ["Lagoa Spot",0,25],["Vistas de Anitá II",0,23],
+  ["Vistas de Anitá I",0,6],["Vistas de Anitá III",0,5],
 ];
 
-// Enrich with % and hasGroup
-const ALL = ROWS.map(r => ({
-  name: r[0],
-  wpp:  r[1],
-  pipe: r[2],
-  pct:  r[2] > 0 ? Math.round(r[1] / r[2] * 100) : 0,
-  hasGroup: r[1] > 0
-}));
+const GROUPS_DATA = [
+  {emp:"Barra Grande Spot",grupos:[
+    {nome:"Barra Grande Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"Barra Grande Spot <> Seazone",tipo:"Gestão SPE",contas:["11"]}
+  ]},
+  {emp:"Barra Spot",grupos:[
+    {nome:"16. Barra Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"16.1. ARV + SEAZONE + Conselho Barra Spot",tipo:"Conselho Fiscal",contas:["11"]},
+    {nome:"16.2 Barra Spot - Conselho Fiscal + ADM + Seazone",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"16. ADMIN SPE BARRA SPOT + SEAZONE",tipo:"Gestão SPE",contas:["48","11"]}
+  ]},
+  {emp:"Batel Spot",grupos:[
+    {nome:"Batel Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"2. Batel Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["11"]},
+    {nome:"2.1. Batel Spot- Jurídico",tipo:"Jurídico",contas:["11"]},
+    {nome:"Batel Spot - Obra",tipo:"Obra",contas:["11"]}
+  ]},
+  {emp:"Bonito Spot",grupos:[
+    {nome:"Bonito Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"26. Bonito Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["11"]},
+    {nome:"Bonito Spot I <> Seazone",tipo:"Gestão SPE",contas:["11"]}
+  ]},
+  {emp:"Bonito Spot II",grupos:[
+    {nome:"Bonito Spot II - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"Bonito Spot II <> Seazone",tipo:"Gestão SPE",contas:["11"]}
+  ]},
+  {emp:"Cachoeira Beach Spot",grupos:[
+    {nome:"Cachoeira Beach Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"25. Cachoeira Beach Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["11"]},
+    {nome:"Cachoeira Beach Spot",tipo:"Outros",contas:["11"]}
+  ]},
+  {emp:"Cachoeira Spot",grupos:[
+    {nome:"20. Cachoeira Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"20. Cachoeira Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"20.1. Cachoeira Spot- Jurídico",tipo:"Jurídico",contas:["11"]},
+    {nome:"Cachoeira Spot - Obra",tipo:"Obra",contas:["11"]}
+  ]},
+  {emp:"Campeche Spot",grupos:[
+    {nome:"4. Campeche Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"4. Campeche Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]}
+  ]},
+  {emp:"Canas Beach Spot",grupos:[
+    {nome:"Canas Beach Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"38. CANAS BEACH - Conselho Fiscal",tipo:"Conselho Fiscal",contas:["11"]},
+    {nome:"Canas Beach <> Seazone",tipo:"Gestão SPE",contas:["11"]}
+  ]},
+  {emp:"Canasvieiras Spot",grupos:[
+    {nome:"3. Canasvieiras Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"3. Canasvieiras Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"Canasvieiras Spot - Obra",tipo:"Obra",contas:["11"]}
+  ]},
+  {emp:"Caraguá Spot",grupos:[
+    {nome:"Caraguá Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"Caraguá Spot <> Seazone",tipo:"Gestão SPE",contas:["11"]}
+  ]},
+  {emp:"Foz Spot",grupos:[
+    {nome:"Foz Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"39. FOZ SPOT - Conselho Fiscal",tipo:"Conselho Fiscal",contas:["11"]},
+    {nome:"Foz Spot <> Seazone",tipo:"Gestão SPE",contas:["11"]}
+  ]},
+  {emp:"Ilha do Campeche II Spot",grupos:[
+    {nome:"6. Ilha do Campeche II Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"6. Ilha do Campeche II- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"Ilha do Campeche Spot II - Obra",tipo:"Obra",contas:["11"]}
+  ]},
+  {emp:"Ilha do Campeche Spot",grupos:[
+    {nome:"5. Ilha do Campeche Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"5. Ilha do Campeche Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"Ilha do Campeche Spot - Aprovação",tipo:"Aprovação",contas:["11"]}
+  ]},
+  {emp:"Imbassaí Spot",grupos:[
+    {nome:"18. Imbassaí Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"18. Imbassaí Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]}
+  ]},
+  {emp:"Ingleses Spot",grupos:[
+    {nome:"Ingleses Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"9. Ingleses Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"Ingleses - ARV + Conselho",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"Ingleses Spot - Obra",tipo:"Obra",contas:["11"]},
+    {nome:"Ingleses - Condominio",tipo:"Condomínio",contas:["48","11"]}
+  ]},
+  {emp:"Itacaré Spot",grupos:[
+    {nome:"Itacaré Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"[GERENCIAL] ITACARÉ",tipo:"Gestão",contas:["11"]}
+  ]},
+  {emp:"Japaratinga Spot",grupos:[
+    {nome:"7. Japaratinga Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"7. Japaratinga Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"Japaratinga Spot - Obra",tipo:"Obra",contas:["11"]}
+  ]},
+  {emp:"Jurerê Beach Spot",grupos:[
+    {nome:"Jurerê Beach Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"13. Jurerê Beach Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["11"]},
+    {nome:"13.1. Jurerê Beach Spot- Jurídico",tipo:"Jurídico",contas:["11"]},
+    {nome:"Jurerê Beach Spot - Obra",tipo:"Obra",contas:["11"]}
+  ]},
+  {emp:"Jurerê Spot II",grupos:[
+    {nome:"Jurerê Spot II - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"Jurerê II Spot",tipo:"Outros",contas:["11"]}
+  ]},
+  {emp:"Jurerê Spot III",grupos:[
+    {nome:"Jurerê Spot III - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]}
+  ]},
+  {emp:"Lagoa Spot",grupos:[
+    {nome:"1.1. Lagoa Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"1. Board - Finalização do Lagoa Spot",tipo:"Gestão",contas:["48","11"]}
+  ]},
+  {emp:"Marista 144 Spot",grupos:[
+    {nome:"Marista 144 Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"Marista 144 Spot - Obra",tipo:"Obra",contas:["11"]},
+    {nome:"Marista 144 Spot",tipo:"Outros",contas:["11"]}
+  ]},
+  {emp:"Meireles Spot",grupos:[
+    {nome:"Meireles Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"22. Meireles Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["11"]}
+  ]},
+  {emp:"Morro das Pedras Spot",grupos:[
+    {nome:"17. Morro das Pedras Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"17. Morro das Pedras Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]}
+  ]},
+  {emp:"Natal Spot",grupos:[
+    {nome:"Natal Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"[NATAL SPOT] Aprovação",tipo:"Aprovação",contas:["11"]}
+  ]},
+  {emp:"Novo Campeche Spot",grupos:[
+    {nome:"Novo Campeche Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"Novo Campeche Spot <> Seazone",tipo:"Gestão SPE",contas:["11"]}
+  ]},
+  {emp:"Novo Campeche Spot II",grupos:[
+    {nome:"Novo Campeche Spot II - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]}
+  ]},
+  {emp:"Ponta das Canas Spot",grupos:[
+    {nome:"37. Ponta das Canas Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"37. Ponta das Canas Spot - Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"Ponta das Canas II <> Seazone",tipo:"Gestão SPE",contas:["11"]}
+  ]},
+  {emp:"Ponta das Canas Spot II",grupos:[
+    {nome:"Ponta das Canas Spot II - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"Pontas das Canas <> Seazone",tipo:"Gestão SPE",contas:["11"]},
+    {nome:"Pontas das Canas Spot",tipo:"Outros",contas:["11"]}
+  ]},
+  {emp:"Rosa Norte Spot",grupos:[
+    {nome:"24. Rosa Norte Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"24. Rosa Norte Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"Rosa Norte Spot - Obra",tipo:"Obra",contas:["11"]}
+  ]},
+  {emp:"Rosa Sul Spot",grupos:[
+    {nome:"11. Rosa Sul Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"11. Rosa Sul Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"8. Rosa Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"8.1. Implantação Cond. Rosa Spot",tipo:"Engenharia",contas:["11"]},
+    {nome:"Síndica rosa spot",tipo:"Condomínio",contas:["48"]}
+  ]},
+  {emp:"Salvador Spot",grupos:[
+    {nome:"14. Salvador Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"14. Salvador Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"14.1. Salvador Spot - Regularização matricula",tipo:"Regularização",contas:["11"]}
+  ]},
+  {emp:"Santinho Spot",grupos:[
+    {nome:"31. Santinho Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"31. Santinho - Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]}
+  ]},
+  {emp:"Santo Antônio Spot",grupos:[
+    {nome:"15. Santo Antônio - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"15. Santo Antônio Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"15.1. Santo Antônio Spot- Jurídico",tipo:"Jurídico",contas:["11"]},
+    {nome:"Santo Antônio - Engenharia",tipo:"Engenharia",contas:["11"]}
+  ]},
+  {emp:"Sul da Ilha Spot",grupos:[
+    {nome:"23. Sul da Ilha Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"23. Sul da Ilha Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"Sul da Ilha Spot",tipo:"Outros",contas:["11"]}
+  ]},
+  {emp:"Trancoso Spot",grupos:[
+    {nome:"10. Trancoso Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48","11"]},
+    {nome:"10. Trancoso Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"10.1. Trancoso Spot- Jurídico",tipo:"Jurídico",contas:["11"]},
+    {nome:"[Seazone] Trancoso Spot",tipo:"Gestão SPE",contas:["11"]}
+  ]},
+  {emp:"Urubici Spot",grupos:[
+    {nome:"12. Urubici Spot - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"12. Urubici Spot- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["11"]},
+    {nome:"12.1. Urubici Spot- Jurídico",tipo:"Jurídico",contas:["11"]},
+    {nome:"Urubici (Vistorias)",tipo:"Engenharia",contas:["11"]},
+    {nome:"[Urubici Spot] Condomínio",tipo:"Condomínio",contas:["11"]}
+  ]},
+  {emp:"Urubici Spot II",grupos:[
+    {nome:"19. Urubici Spot II - Seazone Oficial",tipo:"Seazone Oficial",contas:["48"]},
+    {nome:"19. Urubici Spot II- Conselho Fiscal",tipo:"Conselho Fiscal",contas:["48","11"]},
+    {nome:"Urubici Spot II - Obra",tipo:"Obra",contas:["11"]}
+  ]}
+];
 
-// Compute averages
-const totalWpp  = ALL.reduce((s,r) => s + r.wpp,  0);
-const totalPipe = ALL.reduce((s,r) => s + r.pipe, 0);
-const avgPct    = Math.round(totalWpp / totalPipe * 100);
-document.getElementById('meta-avg').textContent = avgPct + '% aderência média';
+/* augment with total */
+GROUPS_DATA.forEach(d=>{ d.total=d.grupos.length; });
 
-function chipClass(pct, hasGroup) {
-  if (!hasGroup) return 'chip-zero';
-  if (pct >= 60) return 'chip-high';
-  if (pct >= 40) return 'chip-mid';
-  return 'chip-low';
+/* ── Type badge colors ── */
+const TIPO_COLOR = {
+  "Seazone Oficial":"#00B2A9",
+  "Conselho Fiscal":"#0D2240",
+  "Jurídico":"#7B2D8B",
+  "Obra":"#D4580A",
+  "Gestão SPE":"#1A5DAB",
+  "Engenharia":"#C07D00",
+  "Condomínio":"#1A7A4A",
+  "Aprovação":"#2AACAC",
+  "Gestão":"#5A3D8A",
+  "Regularização":"#6B7A8A",
+  "Outros":"#8A8A8A"
+};
+
+function tbadge(tipo){
+  const c=TIPO_COLOR[tipo]||"#888";
+  return `<span class="tbadge" style="background:${c}">${tipo}</span>`;
+}
+function accBadge(contas){
+  if(contas.includes("48")&&contas.includes("11"))
+    return `<span class="acc-badge">+48</span><span class="acc-badge acc11">+11</span>`;
+  if(contas.includes("11"))
+    return `<span class="acc-badge acc11">+11</span>`;
+  return `<span class="acc-badge">+48</span>`;
 }
 
-let sortCol = 4, sortDir = -1; // default: aderência desc
-let filterText = '';
+/* ─── TAB 1 ─── */
+let t1Sort={col:2,asc:false};
+let t1Data=ROWS.map((r,i)=>({idx:i+1,name:r[0],wpp:r[1],inv:r[2],pct:r[2]>0?Math.round(r[1]/r[2]*100):0}));
 
-function applyFilter() {
-  filterText = document.getElementById('search').value.toLowerCase().trim();
-  render();
+function chipClass(p){
+  if(p===0)return"chip chip-none";
+  if(p>=80)return"chip chip-green";
+  if(p>=60)return"chip chip-lime";
+  if(p>=40)return"chip chip-yellow";
+  if(p>=20)return"chip chip-orange";
+  return"chip chip-red";
 }
 
-function sortBy(col) {
-  if (sortCol === col) { sortDir *= -1; }
-  else { sortCol = col; sortDir = col === 1 ? 1 : -1; }
-  render();
+function renderTab1(data){
+  const tb=document.getElementById("tbody1");
+  tb.innerHTML=data.map((r,i)=>`
+    <tr>
+      <td class="num">${i+1}</td>
+      <td>${r.name}</td>
+      <td class="num right">${r.wpp>0?r.wpp:'<span class="no-grp">—</span>'}</td>
+      <td class="num right">${r.inv}</td>
+      <td class="right"><span class="${chipClass(r.pct)}">${r.pct}%</span></td>
+    </tr>`).join("");
 }
 
-function fmt(n) { return n.toLocaleString('pt-BR'); }
-
-function render() {
-  // Filter
-  const filtered = ALL.filter(r =>
-    filterText === '' || r.name.toLowerCase().includes(filterText)
-  );
-
-  // Sort
-  filtered.sort((a, b) => {
-    let va, vb;
-    if (sortCol === 1) { va = a.name; vb = b.name; return sortDir * va.localeCompare(vb, 'pt-BR'); }
-    if (sortCol === 2) { va = a.wpp;  vb = b.wpp; }
-    else if (sortCol === 3) { va = a.pipe; vb = b.pipe; }
-    else { va = a.pct; vb = b.pct; }
-    return sortDir * (va - vb);
+function sortTab1(col){
+  if(t1Sort.col===col) t1Sort.asc=!t1Sort.asc;
+  else{t1Sort.col=col;t1Sort.asc=col===1;}
+  document.querySelectorAll("#tbl1 th").forEach((th,i)=>{
+    th.classList.toggle("sorted",i===col);
+    const ic=th.querySelector(".sort-icon");
+    if(ic)ic.textContent=i===col?(t1Sort.asc?"↑":"↓"):"↕";
   });
+  const q=document.getElementById("search1").value.toLowerCase();
+  let d=[...t1Data].filter(r=>!q||r.name.toLowerCase().includes(q));
+  const keys=["idx","name","wpp","inv","pct"];
+  d.sort((a,b)=>{
+    let v=a[keys[col]]<b[keys[col]]?-1:a[keys[col]]>b[keys[col]]?1:0;
+    return t1Sort.asc?v:-v;
+  });
+  renderTab1(d);
+}
 
-  // Sort icon update
-  for (let i = 0; i < 5; i++) {
-    const el = document.getElementById('si' + i);
-    const th = el.parentElement;
-    if (i === sortCol) {
-      el.textContent = sortDir === 1 ? '↑' : '↓';
-      th.classList.add('active');
-    } else {
-      el.textContent = '↕';
-      th.classList.remove('active');
-    }
-  }
+function filterTab1(){
+  const q=document.getElementById("search1").value.toLowerCase();
+  let d=[...t1Data].filter(r=>!q||r.name.toLowerCase().includes(q));
+  const keys=["idx","name","wpp","inv","pct"];
+  d.sort((a,b)=>{
+    let v=a[keys[t1Sort.col]]<b[keys[t1Sort.col]]?-1:a[keys[t1Sort.col]]>b[keys[t1Sort.col]]?1:0;
+    return t1Sort.asc?v:-v;
+  });
+  renderTab1(d);
+}
 
-  // Count
-  document.getElementById('count-label').innerHTML =
-    `<strong>${filtered.length}</strong> de 42 empreendimentos`;
+function buildPills1(){
+  const total=t1Data.length;
+  const comGrupo=t1Data.filter(r=>r.wpp>0).length;
+  const semGrupo=t1Data.filter(r=>r.wpp===0).length;
+  const totalInv=t1Data.reduce((s,r)=>s+r.inv,0);
+  const totalWpp=t1Data.reduce((s,r)=>s+r.wpp,0);
+  const avgPct=Math.round(totalWpp/totalInv*100);
+  document.getElementById("pills1").innerHTML=`
+    <div class="pill"><span>${total}</span> empreendimentos</div>
+    <div class="pill"><span>${comGrupo}</span> com grupo WPP</div>
+    <div class="pill"><span>${semGrupo}</span> sem grupo</div>
+    <div class="pill"><span>${totalInv}</span> investidores ativos</div>
+    <div class="pill"><span>${avgPct}%</span> aderência média</div>`;
+}
 
-  const tbody = document.getElementById('tbody');
-  let rank = 0;
-  let html = '';
-  let shownNoGroup = false;
+/* ─── TAB 2 ─── */
+let t2Sort={col:2,asc:false};
+let t2Open=new Set();
 
-  filtered.forEach(r => {
-    // Section divider before no-group rows (only in default sort)
-    if (!r.hasGroup && !shownNoGroup && filterText === '') {
-      shownNoGroup = true;
-      html += `<tr class="section-div"><td colspan="5">Sem Grupo WhatsApp</td></tr>`;
-    }
+function typeMiniBar(grupos){
+  const counts={};
+  grupos.forEach(g=>counts[g.tipo]=(counts[g.tipo]||0)+1);
+  return Object.entries(counts).map(([t,n])=>`
+    <span class="tcount"><span class="tcount-dot" style="background:${TIPO_COLOR[t]||'#888'}"></span>${t} (${n})</span>
+  `).join("");
+}
 
-    if (r.hasGroup) rank++;
-    const rankStr = r.hasGroup ? rank : '—';
-    const cls   = chipClass(r.pct, r.hasGroup);
-    const pctStr = r.hasGroup ? `<span class="chip ${cls}">${r.pct}%</span>` : `<span class="chip chip-zero">0%</span>`;
-    const wppStr = r.hasGroup ? fmt(r.wpp) : `<span class="no-group-badge">sem grupo</span>`;
-
-    html += `<tr>
-      <td class="td-rank">${rankStr}</td>
-      <td class="td-name">${r.name}</td>
-      <td class="td-num">${wppStr}</td>
-      <td class="td-num dim">${fmt(r.pipe)}</td>
-      <td class="td-pct">${pctStr}</td>
+function renderTab2(data){
+  const tb=document.getElementById("tbody2");
+  let rows="";
+  data.forEach((r,i)=>{
+    const isOpen=t2Open.has(r.emp);
+    const icon=isOpen?"▶":"▶";
+    rows+=`<tr class="emp-row${isOpen?" open":""}" onclick="toggleEmp('${r.emp.replace(/'/g,"\\'")}',this)">
+      <td class="num">${i+1}</td>
+      <td class="emp-name"><span class="expand-icon">${isOpen?"▶":"▶"}</span>${r.emp}</td>
+      <td class="num right"><strong>${r.total}</strong></td>
+      <td><div class="type-mini">${typeMiniBar(r.grupos)}</div></td>
     </tr>`;
+    if(isOpen){
+      const items=r.grupos.map(g=>`
+        <div class="grupo-item">
+          <span class="grupo-nome">${g.nome}</span>
+          ${tbadge(g.tipo)}
+          <span class="acc-both">${accBadge(g.contas)}</span>
+        </div>`).join("");
+      rows+=`<tr class="detail-row"><td colspan="4"><div class="detail-inner">${items}</div></td></tr>`;
+    }
   });
-
-  tbody.innerHTML = html;
+  tb.innerHTML=rows;
 }
 
-render();
+function toggleEmp(emp,row){
+  if(t2Open.has(emp)) t2Open.delete(emp);
+  else t2Open.add(emp);
+  const q=document.getElementById("search2").value.toLowerCase();
+  filterTab2Internal(q);
+}
+
+function sortTab2(col){
+  if(t2Sort.col===col) t2Sort.asc=!t2Sort.asc;
+  else{t2Sort.col=col;t2Sort.asc=col===1;}
+  document.querySelectorAll("#tbl2 th").forEach((th,i)=>{
+    th.classList.toggle("sorted",i===col);
+    const ic=th.querySelector(".sort-icon");
+    if(ic)ic.textContent=i===col?(t2Sort.asc?"↑":"↓"):"↕";
+  });
+  filterTab2();
+}
+
+function filterTab2(){
+  const q=document.getElementById("search2").value.toLowerCase();
+  filterTab2Internal(q);
+}
+
+function filterTab2Internal(q){
+  let d=[...GROUPS_DATA];
+  if(q){
+    d=d.filter(r=>r.emp.toLowerCase().includes(q)||r.grupos.some(g=>g.nome.toLowerCase().includes(q)));
+  }
+  const keys=["","emp","total","total"];
+  if(t2Sort.col===1||t2Sort.col===2){
+    d.sort((a,b)=>{
+      const av=t2Sort.col===1?a.emp:a.total;
+      const bv=t2Sort.col===1?b.emp:b.total;
+      let v=av<bv?-1:av>bv?1:0;
+      return t2Sort.asc?v:-v;
+    });
+  }
+  renderTab2(d);
+}
+
+function buildPills2(){
+  const totalGrp=GROUPS_DATA.reduce((s,r)=>s+r.total,0);
+  const byType={};
+  GROUPS_DATA.forEach(r=>r.grupos.forEach(g=>byType[g.tipo]=(byType[g.tipo]||0)+1));
+  const so=byType["Seazone Oficial"]||0;
+  const cf=byType["Conselho Fiscal"]||0;
+  document.getElementById("pills2").innerHTML=`
+    <div class="pill"><span>${GROUPS_DATA.length}</span> empreendimentos</div>
+    <div class="pill"><span>${totalGrp}</span> grupos únicos</div>
+    <div class="pill"><span>${so}</span> Seazone Oficial</div>
+    <div class="pill"><span>${cf}</span> Conselho Fiscal</div>
+    <div class="pill"><span style="color:var(--teal)">+48</span> e <span style="color:#D4580A">+11</span> TimelinesAI</div>`;
+}
+
+/* ─── TABS ─── */
+function switchTab(id,btn){
+  document.querySelectorAll(".tab-pane").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.getElementById("tab-"+id).classList.add("active");
+  btn.classList.add("active");
+}
+
+/* ─── THEME ─── */
+function toggleTheme(){
+  const r=document.documentElement;
+  const cur=r.getAttribute("data-theme");
+  r.setAttribute("data-theme",cur==="dark"?"light":"dark");
+}
+
+/* ─── INIT ─── */
+(function init(){
+  // Tab 1
+  buildPills1();
+  let d=[...t1Data];
+  d.sort((a,b)=>b.wpp-a.wpp);
+  const ic=document.querySelector("#th1-2 .sort-icon");
+  if(ic)ic.textContent="↓";
+  renderTab1(d);
+
+  // Tab 2
+  buildPills2();
+  let d2=[...GROUPS_DATA];
+  d2.sort((a,b)=>b.total-a.total);
+  renderTab2(d2);
+})();
 </script>
+</body>
+</html>
