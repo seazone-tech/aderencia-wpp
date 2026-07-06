@@ -1,0 +1,459 @@
+<title>Aderência Grupos WPP — Seazone</title>
+<style>
+:root {
+  --navy:    #0D2240;
+  --teal:    #00B2A9;
+  --teal-d:  #007A73;
+  --bg:      #F7F9FC;
+  --surface: #FFFFFF;
+  --border:  #DDE5F0;
+  --ink:     #0D2240;
+  --ink-2:   #4A607E;
+  --ink-3:   #8EA4BE;
+  --row-alt: #F2F6FB;
+  --c-high:  #16A34A;
+  --c-high-bg: #DCFCE7;
+  --c-mid:   #0093A0;
+  --c-mid-bg: #D9F5F4;
+  --c-low:   #B45309;
+  --c-low-bg: #FEF3C7;
+  --c-zero:  #B91C1C;
+  --c-zero-bg: #FEE2E2;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #07111E;
+    --surface: #0C1C30;
+    --border:  rgba(0,178,169,.15);
+    --ink:     #DDE8F5;
+    --ink-2:   #7A9BBC;
+    --ink-3:   #3E5D7A;
+    --row-alt: #0A1828;
+    --c-high-bg: rgba(22,163,74,.15);
+    --c-mid-bg:  rgba(0,147,160,.15);
+    --c-low-bg:  rgba(180,83,9,.15);
+    --c-zero-bg: rgba(185,28,28,.15);
+  }
+}
+:root[data-theme="light"] {
+  --bg:#F7F9FC; --surface:#FFFFFF; --border:#DDE5F0; --ink:#0D2240; --ink-2:#4A607E;
+  --ink-3:#8EA4BE; --row-alt:#F2F6FB;
+  --c-high-bg:#DCFCE7; --c-mid-bg:#D9F5F4; --c-low-bg:#FEF3C7; --c-zero-bg:#FEE2E2;
+}
+:root[data-theme="dark"] {
+  --bg:#07111E; --surface:#0C1C30; --border:rgba(0,178,169,.15); --ink:#DDE8F5;
+  --ink-2:#7A9BBC; --ink-3:#3E5D7A; --row-alt:#0A1828;
+  --c-high-bg:rgba(22,163,74,.15); --c-mid-bg:rgba(0,147,160,.15);
+  --c-low-bg:rgba(180,83,9,.15); --c-zero-bg:rgba(185,28,28,.15);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; -webkit-font-smoothing: antialiased; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+/* ── HEADER ─────────────────────────── */
+.top-bar {
+  background: var(--navy);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.top-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.top-sub {
+  color: rgba(255,255,255,.45);
+  font-size: 11px;
+  margin-top: 1px;
+}
+.top-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.meta-pill {
+  background: rgba(0,178,169,.18);
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* ── TOOLBAR ────────────────────────── */
+.toolbar {
+  padding: 12px 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.search-box {
+  flex: 1;
+  min-width: 180px;
+  max-width: 320px;
+  position: relative;
+}
+.search-box svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-3);
+  pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  padding: 7px 10px 7px 32px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .15s;
+}
+.search-input:focus { border-color: var(--teal); }
+.search-input::placeholder { color: var(--ink-3); }
+.count-label {
+  font-size: 12px;
+  color: var(--ink-3);
+  white-space: nowrap;
+  margin-left: auto;
+}
+.count-label strong { color: var(--ink-2); }
+
+/* ── TABLE WRAP ─────────────────────── */
+.table-wrap {
+  padding: 12px 20px 40px;
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: var(--surface);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(13,34,64,.06);
+}
+
+/* ── THEAD ──────────────────────────── */
+thead tr {
+  background: var(--navy);
+}
+thead th {
+  padding: 10px 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  text-align: left;
+  user-select: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .12s;
+}
+thead th:hover { color: rgba(255,255,255,.9); }
+thead th.active { color: var(--teal); }
+thead th.right { text-align: right; }
+.sort-icon { display: inline-block; margin-left: 3px; opacity: .45; font-style: normal; font-size: 9px; }
+thead th.active .sort-icon { opacity: 1; color: var(--teal); }
+
+/* ── TBODY ──────────────────────────── */
+tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:nth-child(even) { background: var(--row-alt); }
+tbody tr:hover { background: rgba(0,178,169,.07); }
+
+td {
+  padding: 9px 14px;
+  vertical-align: middle;
+}
+.td-rank {
+  color: var(--ink-3);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  width: 32px;
+  text-align: right;
+  padding-right: 6px;
+}
+.td-name {
+  font-weight: 500;
+  color: var(--ink);
+  min-width: 180px;
+}
+.td-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.td-num.dim { color: var(--ink-2); }
+.td-pct { text-align: right; padding-right: 12px; }
+
+/* section divider row */
+tr.section-div td {
+  background: var(--row-alt);
+  padding: 6px 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-top: 2px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── PCT CHIP ───────────────────────── */
+.chip {
+  display: inline-block;
+  min-width: 48px;
+  text-align: center;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .01em;
+}
+.chip-high  { background: var(--c-high-bg);  color: var(--c-high); }
+.chip-mid   { background: var(--c-mid-bg);   color: var(--c-mid); }
+.chip-low   { background: var(--c-low-bg);   color: var(--c-low); }
+.chip-zero  { background: var(--c-zero-bg);  color: var(--c-zero); }
+
+/* no-group badge */
+.no-group-badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--c-zero);
+  background: var(--c-zero-bg);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+/* ── FOOTER ─────────────────────────── */
+.footer-note {
+  padding: 0 20px 24px;
+  font-size: 11px;
+  color: var(--ink-3);
+  line-height: 1.6;
+}
+
+@media (max-width: 520px) {
+  .td-name { min-width: 140px; font-size: 12px; }
+  .top-bar  { padding: 10px 14px; }
+  .table-wrap { padding: 10px 10px 32px; }
+  .toolbar { padding: 10px 10px 0; }
+  .footer-note { padding: 0 10px 20px; }
+}
+</style>
+
+<div class="top-bar">
+  <div>
+    <div class="top-title">Aderência — Grupos Seazone Oficial</div>
+    <div class="top-sub">Integrantes WPP × Investidores Ativos · Pipefy BD Investidores</div>
+  </div>
+  <div class="top-meta">
+    <span class="meta-pill">38 grupos ativos</span>
+    <span class="meta-pill">4 sem grupo</span>
+    <span class="meta-pill" id="meta-avg">— aderência média</span>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="search-box">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <input class="search-input" id="search" type="text" placeholder="Buscar empreendimento…" oninput="applyFilter()">
+  </div>
+  <div class="count-label" id="count-label">42 empreendimentos</div>
+
+</div>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th class="right" onclick="sortBy(0)">#<i class="sort-icon" id="si0">↕</i></th>
+      <th onclick="sortBy(1)">Empreendimento<i class="sort-icon" id="si1">↕</i></th>
+      <th class="right" onclick="sortBy(2)">Integrantes WPP<i class="sort-icon" id="si2">↕</i></th>
+      <th class="right" onclick="sortBy(3)">Investidores Pipefy<i class="sort-icon" id="si3">↕</i></th>
+      <th class="right" onclick="sortBy(4)">Aderência<i class="sort-icon" id="si4">↑</i></th>
+    </tr>
+  </thead>
+  <tbody id="tbody"></tbody>
+</table>
+</div>
+
+<div class="footer-note">
+  Fonte: WhatsApp Web (conta Bruna Zanella, 06/07/2026) · Pipefy Pipe 306360401 fase Ativo. Os integrantes WPP incluem administradores Seazone — a aderência real de investidores pode ser ligeiramente inferior ao percentual exibido.
+</div>
+
+<script>
+const ROWS = [
+  ["Barra Grande Spot",        33, 68],
+  ["Barra Spot",               40, 65],
+  ["Batel Spot",               44,111],
+  ["Bonito Spot",              17, 62],
+  ["Bonito Spot II",           16, 21],
+  ["Cachoeira Beach Spot",     62,168],
+  ["Cachoeira Spot",           34,103],
+  ["Campeche Spot",            32, 75],
+  ["Canas Beach Spot",         41,119],
+  ["Canasvieiras Spot",        44,105],
+  ["Caraguá Spot",             14, 29],
+  ["Foz Spot",                 78,165],
+  ["Ilha do Campeche II Spot", 23, 50],
+  ["Ilha do Campeche Spot",    53,106],
+  ["Imbassaí Spot",            34, 72],
+  ["Ingleses Spot",            33, 57],
+  ["Itacaré Spot",             39, 70],
+  ["Japaratinga Spot",         28, 80],
+  ["Jurerê Beach Spot",        21, 56],
+  ["Jurerê Spot II",           17, 59],
+  ["Jurerê Spot III",          29, 68],
+  ["Marista 144 Spot",         29,112],
+  ["Meireles Spot",            47,105],
+  ["Morro das Pedras Spot",    48, 84],
+  ["Natal Spot",               35, 80],
+  ["Novo Campeche Spot",       23, 61],
+  ["Novo Campeche Spot II",    19, 31],
+  ["Ponta das Canas Spot",     56,177],
+  ["Ponta das Canas Spot II",  92,209],
+  ["Rosa Norte Spot",          38, 53],
+  ["Rosa Sul Spot",            28, 51],
+  ["Salvador Spot",            43, 82],
+  ["Santinho Spot",            77,213],
+  ["Santo Antônio Spot",       53, 69],
+  ["Sul da Ilha Spot",         66,110],
+  ["Urubici Spot",             32, 66],
+  ["Urubici Spot II",          44,102],
+  ["Trancoso Spot",            15, 53],
+  // sem grupo
+  ["Lagoa Spot",                0, 25],
+  ["Vistas de Anitá II",        0, 23],
+  ["Vistas de Anitá I",         0,  6],
+  ["Vistas de Anitá III",       0,  5],
+];
+
+// Enrich with % and hasGroup
+const ALL = ROWS.map(r => ({
+  name: r[0],
+  wpp:  r[1],
+  pipe: r[2],
+  pct:  r[2] > 0 ? Math.round(r[1] / r[2] * 100) : 0,
+  hasGroup: r[1] > 0
+}));
+
+// Compute averages
+const totalWpp  = ALL.reduce((s,r) => s + r.wpp,  0);
+const totalPipe = ALL.reduce((s,r) => s + r.pipe, 0);
+const avgPct    = Math.round(totalWpp / totalPipe * 100);
+document.getElementById('meta-avg').textContent = avgPct + '% aderência média';
+
+function chipClass(pct, hasGroup) {
+  if (!hasGroup) return 'chip-zero';
+  if (pct >= 60) return 'chip-high';
+  if (pct >= 40) return 'chip-mid';
+  return 'chip-low';
+}
+
+let sortCol = 4, sortDir = -1; // default: aderência desc
+let filterText = '';
+
+function applyFilter() {
+  filterText = document.getElementById('search').value.toLowerCase().trim();
+  render();
+}
+
+function sortBy(col) {
+  if (sortCol === col) { sortDir *= -1; }
+  else { sortCol = col; sortDir = col === 1 ? 1 : -1; }
+  render();
+}
+
+function fmt(n) { return n.toLocaleString('pt-BR'); }
+
+function render() {
+  // Filter
+  const filtered = ALL.filter(r =>
+    filterText === '' || r.name.toLowerCase().includes(filterText)
+  );
+
+  // Sort
+  filtered.sort((a, b) => {
+    let va, vb;
+    if (sortCol === 1) { va = a.name; vb = b.name; return sortDir * va.localeCompare(vb, 'pt-BR'); }
+    if (sortCol === 2) { va = a.wpp;  vb = b.wpp; }
+    else if (sortCol === 3) { va = a.pipe; vb = b.pipe; }
+    else { va = a.pct; vb = b.pct; }
+    return sortDir * (va - vb);
+  });
+
+  // Sort icon update
+  for (let i = 0; i < 5; i++) {
+    const el = document.getElementById('si' + i);
+    const th = el.parentElement;
+    if (i === sortCol) {
+      el.textContent = sortDir === 1 ? '↑' : '↓';
+      th.classList.add('active');
+    } else {
+      el.textContent = '↕';
+      th.classList.remove('active');
+    }
+  }
+
+  // Count
+  document.getElementById('count-label').innerHTML =
+    `<strong>${filtered.length}</strong> de 42 empreendimentos`;
+
+  const tbody = document.getElementById('tbody');
+  let rank = 0;
+  let html = '';
+  let shownNoGroup = false;
+
+  filtered.forEach(r => {
+    // Section divider before no-group rows (only in default sort)
+    if (!r.hasGroup && !shownNoGroup && filterText === '') {
+      shownNoGroup = true;
+      html += `<tr class="section-div"><td colspan="5">Sem Grupo WhatsApp</td></tr>`;
+    }
+
+    if (r.hasGroup) rank++;
+    const rankStr = r.hasGroup ? rank : '—';
+    const cls   = chipClass(r.pct, r.hasGroup);
+    const pctStr = r.hasGroup ? `<span class="chip ${cls}">${r.pct}%</span>` : `<span class="chip chip-zero">0%</span>`;
+    const wppStr = r.hasGroup ? fmt(r.wpp) : `<span class="no-group-badge">sem grupo</span>`;
+
+    html += `<tr>
+      <td class="td-rank">${rankStr}</td>
+      <td class="td-name">${r.name}</td>
+      <td class="td-num">${wppStr}</td>
+      <td class="td-num dim">${fmt(r.pipe)}</td>
+      <td class="td-pct">${pctStr}</td>
+    </tr>`;
+  });
+
+  tbody.innerHTML = html;
+}
+
+render();
+</script>
