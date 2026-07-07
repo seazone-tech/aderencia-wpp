@@ -1,0 +1,54 @@
+name: Monitoramento — atualização diária
+
+on:
+  schedule:
+    - cron: "0 9 * * *"   # 09:00 UTC = 06:00 BRT
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitoramento-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (branch com os scripts)
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Coletar Timelines + processar + assuntos + gerar aba
+        env:
+          TIMELINES_TOKEN: ${{ secrets.TIMELINES_TOKEN }}
+          LLM_HUB_KEY: ${{ secrets.LLM_HUB_KEY }}
+          LLM_HUB_URL: ${{ vars.LLM_HUB_URL }}
+          LLM_HUB_MODEL: ${{ vars.LLM_HUB_MODEL }}
+        run: |
+          cd build
+          python coletar_todos.py
+          python processar.py
+          python assuntos_llm.py || echo "assuntos: usando snapshot (fallback)"
+          python gerar_aba2.py
+          python integrar.py "$GITHUB_WORKSPACE/index_out.html"
+
+      - name: Publicar no gh-pages
+        run: |
+          git config user.name "seazone-monitoramento-bot"
+          git config user.email "bot@seazone.com.br"
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp "$GITHUB_WORKSPACE/index_out.html" index.html
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "Sem mudanças no index.html"
+          else
+            git commit -m "chore(monitoramento): atualização automática diária [skip ci]"
+            git push origin gh-pages
+          fi

@@ -1,0 +1,82 @@
+[
+  {
+    "titulo": "Protocolo do projeto de incendio (PPCI)",
+    "descricao": "Corrida para liberar, assinar e protocolar o projeto de incendio (PPCI/PCCI) no Corpo de Bombeiros, incluindo envio do corte de arquitetura e obtencao do numero de protocolo.",
+    "spots": ["Caragua Spot", "Barra Grande Spot", "Natal Spot", "Bonito Spot", "Trancoso Spot", "Itacare Spot"],
+    "tipos": ["Gestao SPE", "Aprovacao", "Obra"],
+    "mencoes": 42,
+    "relevancia": "alta"
+  },
+  {
+    "titulo": "Licenciamento ambiental e aprovacao legal",
+    "descricao": "Andamento de aprovacao do projeto legal e do licenciamento ambiental junto a prefeitura e orgaos (Floram, Casan, Inema, CAERN/FUNCERN/RITUR), pendencias, ETE/sumidouro e prazo do alvara.",
+    "spots": ["Santo Antonio Spot", "Ilha do Campeche Spot", "Natal Spot", "Itacare Spot", "Imbassai Spot", "Caragua Spot"],
+    "tipos": ["Engenharia", "Conselho Fiscal", "Aprovacao", "Gestao"],
+    "mencoes": 35,
+    "relevancia": "alta"
+  },
+  {
+    "titulo": "Assinatura de ART, RRT e DARE",
+    "descricao": "Emissao, retificacao, pagamento e recolhimento de assinaturas dos documentos tecnicos (ART, RRT, DARE) necessarios para viabilizar os protocolos.",
+    "spots": ["Caragua Spot", "Natal Spot", "Barra Grande Spot", "Ingleses Spot", "Santo Antonio Spot"],
+    "tipos": ["Gestao SPE", "Aprovacao", "Conselho Fiscal"],
+    "mencoes": 29,
+    "relevancia": "alta"
+  },
+  {
+    "titulo": "Calculo de area computavel e quadro de areas",
+    "descricao": "Debate tecnico sobre o que entra no CA vs TO (sacadas/terracos), uso de outorga e incentivos (arte publica) e validacao das manchas com a analista antes de fechar o projeto para protocolo.",
+    "spots": ["Sul da Ilha Spot", "Caragua Spot", "Santo Antonio Spot"],
+    "tipos": ["Outros", "Gestao SPE", "Engenharia"],
+    "mencoes": 23,
+    "relevancia": "alta"
+  },
+  {
+    "titulo": "Atraso da ARV e chamada de capital",
+    "descricao": "Conselho cobra a construtora ARV pelo atraso na entrega prometida em assembleia, custos fixos do atraso, notificacao por mora e devolucao de valores a investidor, com risco de nova chamada de capital.",
+    "spots": ["Ingleses Spot"],
+    "tipos": ["Conselho Fiscal"],
+    "mencoes": 20,
+    "relevancia": "alta"
+  },
+  {
+    "titulo": "Manutencoes pos-entrega e garantias",
+    "descricao": "Chamados de manutencao e disputa de garantia (pressao e aquecimento de agua, ralo/vazamento) com responsabilizacao da Thermo/Puel e definicao do fluxo de atendimento via formulario.",
+    "spots": ["Urubici Spot"],
+    "tipos": ["Conselho Fiscal", "Engenharia"],
+    "mencoes": 22,
+    "relevancia": "alta"
+  },
+  {
+    "titulo": "Andamento fisico das obras",
+    "descricao": "Reporte de execucao das obras: concretagem, laje/pilar/alvenaria, mobilizacao de canteiro, diario de obra e reunioes quinzenais de acompanhamento.",
+    "spots": ["Marista 144 Spot", "Jurere Beach Spot", "Rosa Norte Spot", "Canasvieiras Spot", "Cachoeira Spot", "Japaratinga Spot"],
+    "tipos": ["Obra", "Gestao SPE"],
+    "mencoes": 30,
+    "relevancia": "media"
+  },
+  {
+    "titulo": "Prestacao de contas e movimentacoes financeiras",
+    "descricao": "Conselho questiona transferencias entre contas feitas sem aviso previo, exige extrato/comprovantes fiscais e transparencia sobre aplicacoes (BTG/Necton) da SPE.",
+    "spots": ["Lagoa Spot"],
+    "tipos": ["Conselho Fiscal"],
+    "mencoes": 15,
+    "relevancia": "media"
+  },
+  {
+    "titulo": "Habite-se, vistorias e manual do proprietario",
+    "descricao": "Preparacao da entrega: protocolo do Habite-se (CBM/prefeitura), agenda de vistorias de areas comuns e unidades, medicao de mobiliario e finalizacao do manual do proprietario/sindico.",
+    "spots": ["Ingleses Spot", "Trancoso Spot", "Urubici Spot"],
+    "tipos": ["Obra", "Gestao SPE", "Conselho Fiscal", "Engenharia"],
+    "mencoes": 15,
+    "relevancia": "media"
+  },
+  {
+    "titulo": "Distratos, exclusao de cotistas e acoes judiciais",
+    "descricao": "Tratativas juridicas conduzidas pelo conselho: exclusao/distrato de compradores, peticoes iniciais (ex.: contra Pablo, DCAMPOS) e aditivo de contrato de fornecedor.",
+    "spots": ["Batel Spot", "Rosa Norte Spot", "Rosa Sul Spot", "Lagoa Spot", "Trancoso Spot", "Barra Spot"],
+    "tipos": ["Conselho Fiscal", "Juridico", "Gestao SPE"],
+    "mencoes": 18,
+    "relevancia": "media"
+  }
+]
