@@ -93,6 +93,7 @@ th.sorted .si2{opacity:1}
   <button class="tab-btn active" onclick="sw('ad',this)">Aderência WPP</button>
   <button class="tab-btn" onclick="sw('gr',this)">Grupos por Empreendimento</button>
   <button class="tab-btn" onclick="sw('wg',this)">Grupos WPP — Lista Completa</button>
+  <button class="tab-btn" onclick="sw('pl',this)">Pulso — Urubici</button>
 </div>
 
 <!-- ═══ TAB 1: ADERÊNCIA ═══ -->
@@ -151,6 +152,52 @@ th.sorted .si2{opacity:1}
   <tbody id="b3"></tbody>
 </table></div>
 <p class="fn">Extração 25/06/2026 via WhatsApp Web (+48 61360557). Clique em qualquer linha para ver a lista de integrantes. ◆ = contatos externos.</p>
+</div>
+
+<style id="plz-style">
+#tab-pl .plz-hd{padding:16px 0 4px}#tab-pl .plz-hdt{font-size:16px;font-weight:600}
+#tab-pl .plz-hds{font-size:11.5px;color:var(--muted);margin-top:2px}
+#tab-pl h2.plz-h{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:22px 0 9px;font-weight:700}
+#tab-pl .plz-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+#tab-pl table.plz{width:100%;border-collapse:collapse;font-size:13px}
+#tab-pl table.plz thead tr{background:var(--navy)}
+#tab-pl table.plz th{padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.6);text-align:right}
+#tab-pl table.plz th:first-child{text-align:left}
+#tab-pl table.plz td{padding:10px 14px;border-bottom:1px solid var(--border)}
+#tab-pl table.plz tbody tr:last-child td{border-bottom:none}
+#tab-pl .plz-name{font-weight:600}#tab-pl .plz-num{text-align:right;font-variant-numeric:tabular-nums}#tab-pl .plz-dim{color:var(--muted)}
+#tab-pl .plz-chip{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+#tab-pl .plz-hi{background:rgba(22,163,74,.14);color:#16A34A}#tab-pl .plz-md{background:rgba(0,147,160,.14);color:#0093A0}
+#tab-pl .plz-lo{background:rgba(180,83,9,.16);color:#B45309}#tab-pl .plz-ze{background:rgba(185,28,28,.14);color:#B91C1C}
+#tab-pl .plz-ass{display:flex;gap:12px;padding:11px 14px;border-bottom:1px solid var(--border)}#tab-pl .plz-ass:last-child{border-bottom:none}
+#tab-pl .plz-rank{flex:0 0 24px;height:24px;border-radius:50%;background:var(--navy);color:var(--teal);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center}
+#tab-pl .plz-atitle{font-weight:600}#tab-pl .plz-adesc{color:var(--muted);font-size:12.5px;margin:3px 0 4px;line-height:1.45}
+#tab-pl .plz-agrp{color:var(--muted);font-size:11px;font-weight:600;opacity:.85}
+#tab-pl .plz-note{font-size:11.5px;color:var(--muted);line-height:1.6;margin-top:10px}
+#tab-pl .plz-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+#tab-pl .plz-tag{font-size:10.5px;padding:2px 8px;border-radius:5px;border:1px solid var(--border)}
+#tab-pl .plz-tsea{background:rgba(0,147,160,.14);color:#0093A0}
+#tab-pl details{margin-top:10px}#tab-pl summary{cursor:pointer;font-size:12px;color:var(--muted);font-weight:600}
+</style>
+<div id="tab-pl" class="tp">
+  <div class="plz-hd"><div class="plz-hdt">Pulso dos Grupos — Urubici Spot</div>
+  <div class="plz-hds">Piloto · fonte: Timelines (WhatsApp) · janela: últimos 7 dias · 131 mensagens · atualizado 07/07/2026</div></div>
+
+  <h2 class="plz-h">⏱️ Leadtime &amp; atividade</h2>
+  <div class="plz-card"><table class="plz"><thead><tr><th>Grupo</th><th>Última mensagem</th><th>Msgs</th><th>Seazone</th><th>Externos</th></tr></thead><tbody><tr><td class="plz-name">Urubici Spot - Seazone Oficial</td><td class="plz-num">2026-07-07 08:12<br><span class="plz-chip plz-hi">parado 3.8h</span></td><td class="plz-num">1</td><td class="plz-num plz-dim">1</td><td class="plz-num">0</td></tr><tr><td class="plz-name">Urubici Spot II - Seazone Oficial</td><td class="plz-num plz-dim" colspan="4">sem mensagens em 7 dias</td></tr><tr><td class="plz-name">Urubici Spot - Conselho Fiscal</td><td class="plz-num">2026-07-07 08:09<br><span class="plz-chip plz-hi">parado 3.8h</span></td><td class="plz-num">46</td><td class="plz-num plz-dim">2</td><td class="plz-num">44</td></tr><tr><td class="plz-name">Urubici Spot II - Conselho Fiscal</td><td class="plz-num plz-dim" colspan="4">sem mensagens em 7 dias</td></tr><tr><td class="plz-name">Urubici Spot II - Obra</td><td class="plz-num">2026-07-07 10:54<br><span class="plz-chip plz-hi">parado 1.1h</span></td><td class="plz-num">11</td><td class="plz-num plz-dim">9</td><td class="plz-num">2</td></tr><tr><td class="plz-name">[Urubici Spot] Condominio</td><td class="plz-num">2026-07-03 13:56<br><span class="plz-chip plz-lo">parado 3.9d</span></td><td class="plz-num">20</td><td class="plz-num plz-dim">11</td><td class="plz-num">9</td></tr><tr><td class="plz-name">Urubici (Vistorias)</td><td class="plz-num">2026-07-07 09:28<br><span class="plz-chip plz-hi">parado 2.5h</span></td><td class="plz-num">53</td><td class="plz-num plz-dim">29</td><td class="plz-num">24</td></tr><tr><td class="plz-name">Urubici Spot - Juridico</td><td class="plz-num plz-dim" colspan="4">sem mensagens em 7 dias</td></tr></tbody></table></div>
+
+  <h2 class="plz-h">✉️ Tempo de resposta da Seazone</h2>
+  <div class="plz-card"><table class="plz"><thead><tr><th>Grupo</th><th>Médio</th><th>Máximo</th><th>Turnos resp.</th><th>Pendentes</th></tr></thead><tbody><tr><td class="plz-name">Urubici Spot - Seazone Oficial</td><td class="plz-num plz-dim" colspan="4">broadcast / sem turnos</td></tr><tr><td class="plz-name">Urubici Spot II - Seazone Oficial</td><td class="plz-num plz-dim" colspan="4">sem msgs</td></tr><tr><td class="plz-name">Urubici Spot - Conselho Fiscal</td><td class="plz-num">6.6d</td><td class="plz-num">6.6d</td><td class="plz-num plz-dim">1</td><td class="plz-num">0</td></tr><tr><td class="plz-name">Urubici Spot II - Conselho Fiscal</td><td class="plz-num plz-dim" colspan="4">sem msgs</td></tr><tr><td class="plz-name">Urubici Spot II - Obra</td><td class="plz-num">40min</td><td class="plz-num">52min</td><td class="plz-num plz-dim">2</td><td class="plz-num">0</td></tr><tr><td class="plz-name">[Urubici Spot] Condominio</td><td class="plz-num">16.2h</td><td class="plz-num">2.0d</td><td class="plz-num plz-dim">3</td><td class="plz-num">0</td></tr><tr><td class="plz-name">Urubici (Vistorias)</td><td class="plz-num">9.2h</td><td class="plz-num">3.1d</td><td class="plz-num plz-dim">13</td><td class="plz-num">0</td></tr><tr><td class="plz-name">Urubici Spot - Juridico</td><td class="plz-num plz-dim" colspan="4">sem msgs</td></tr></tbody></table></div>
+  <div class="plz-note">No <b>Conselho Fiscal</b> a Seazone participa pouco (2 de 46 mensagens) — a conversa corre entre Puel e conselheiros; o tempo alto reflete baixa presença, não lentidão. Nenhum turno está pendente no momento.</div>
+
+  <h2 class="plz-h">🔥 Top 10 assuntos da parte externa</h2>
+  <div class="plz-card"><div class="plz-ass"><div class="plz-rank">1</div><div><div><span class="plz-atitle">Pressão e aquecimento de água do prédio</span> <span class="plz-chip plz-ze">alta</span></div><div class="plz-adesc">Conselho pediu reunião urgente; disputa de responsabilidade Puel × Thermo (projeto × execução); orçamento de bombas de pressurização.</div><div class="plz-agrp">Conselho · Vistorias</div></div></div><div class="plz-ass"><div class="plz-rank">2</div><div><div><span class="plz-atitle">Pendências de vistoria e termo de entrega</span> <span class="plz-chip plz-ze">alta</span></div><div class="plz-adesc">Unidade 406 não assinou; esquadria, rodapé e encaixe de tomadas; fotos das pendências para liberar a Decor.</div><div class="plz-agrp">Vistorias</div></div></div><div class="plz-ass"><div class="plz-rank">3</div><div><div><span class="plz-atitle">Manutenções pós-obra e responsabilização</span> <span class="plz-chip plz-ze">alta</span></div><div class="plz-adesc">Fluxo de chamados, reserva para manutenções e quem paga (prestador × obra × garantia).</div><div class="plz-agrp">Conselho · Vistorias</div></div></div><div class="plz-ass"><div class="plz-rank">4</div><div><div><span class="plz-atitle">Ralo rachado / infiltração</span> <span class="plz-chip plz-lo">média</span></div><div class="plz-adesc">Garantia hidráulica; responsabilidade do encanador × empresa da obra.</div><div class="plz-agrp">Conselho</div></div></div><div class="plz-ass"><div class="plz-rank">5</div><div><div><span class="plz-atitle">Acesso às unidades</span> <span class="plz-chip plz-lo">média</span></div><div class="plz-adesc">Senhas dos apês (208, 308, 406) e autorização do proprietário para entrar.</div><div class="plz-agrp">Vistorias</div></div></div><div class="plz-ass"><div class="plz-rank">6</div><div><div><span class="plz-atitle">Reuniões de alinhamento</span> <span class="plz-chip plz-lo">média</span></div><div class="plz-adesc">Agendamento Seazone + Puel + Conselho; confirmação de horários e links de reunião.</div><div class="plz-agrp">Conselho · Vistorias</div></div></div><div class="plz-ass"><div class="plz-rank">7</div><div><div><span class="plz-atitle">Controle de manutenção / planilhas</span> <span class="plz-chip plz-lo">média</span></div><div class="plz-adesc">Formulário e planilha da Puel (Dropbox); app U Condo para registrar demandas.</div><div class="plz-agrp">Vistorias · Condomínio</div></div></div><div class="plz-ass"><div class="plz-rank">8</div><div><div><span class="plz-atitle">Faturas de energia (Celesc)</span> <span class="plz-chip plz-md">baixa</span></div><div class="plz-adesc">Como obter fatura por CPF, 0800 da Celesc, vínculo das unidades no app.</div><div class="plz-agrp">Condomínio</div></div></div><div class="plz-ass"><div class="plz-rank">9</div><div><div><span class="plz-atitle">Notificação formal / jurídico</span> <span class="plz-chip plz-md">baixa</span></div><div class="plz-adesc">Resposta à notificação assinada (PDF) sobre as pendências da obra.</div><div class="plz-agrp">Conselho</div></div></div><div class="plz-ass"><div class="plz-rank">10</div><div><div><span class="plz-atitle">Governança do grupo / gestão da obra</span> <span class="plz-chip plz-md">baixa</span></div><div class="plz-adesc">Conselho exige comunicações registradas no grupo; entrada do novo diretor de obras da Seazone.</div><div class="plz-agrp">Conselho · Obra</div></div></div></div>
+
+  <h2 class="plz-h">🔎 Método &amp; classificação</h2>
+  <div class="plz-note">Cada mensagem é <b>Seazone</b> ou <b>externo</b> pelo remetente. Regra: conta conectada, qualquer nome com "Seazone"/"PMO", <b>Bruna Zanella</b> e <b>"Sa"</b> = Seazone.
+  <details><summary>Ver classificação dos remetentes (6 Seazone · 7 externos)</summary>
+  <div style="margin-top:8px"><b style="font-size:11px;color:#0093A0">SEAZONE</b><div class="plz-tags"><span class="plz-tag plz-tsea">Sa (22)</span> <span class="plz-tag plz-tsea">Alice Seazone (16)</span> <span class="plz-tag plz-tsea">Mari Umpierre Seazone (8)</span> <span class="plz-tag plz-tsea">PMO (4)</span> <span class="plz-tag plz-tsea">Seazone (1)</span> <span class="plz-tag plz-tsea">Bruna Zanella (1)</span></div>
+  <b style="font-size:11px;color:var(--muted);display:block;margin-top:10px">EXTERNOS</b><div class="plz-tags"><span class="plz-tag">Leonardo -Puel Engenharia (39)</span> <span class="plz-tag">Marco (17)</span> <span class="plz-tag">Cleverton (9)</span> <span class="plz-tag">André Essenza (6)</span> <span class="plz-tag">Jose Roberto (3)</span> <span class="plz-tag">Daniela Sindica Urubici (3)</span> <span class="plz-tag">Aline Deparis (2)</span></div></div></details></div>
 </div>
 
 <script>
